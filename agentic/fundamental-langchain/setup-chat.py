@@ -1,4 +1,4 @@
-## langchain with Google API key
+## langchain with Google API key with Env Variable
 from dotenv import load_dotenv
 load_dotenv()
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -13,3 +13,5 @@ messages = [
 ]
 ai_msg = chat.invoke(messages)
 print(ai_msg.content)
+
+##  python ./agentic/fundamental-langchain/setup-chat.py
