@@ -7,3 +7,12 @@ geopandas
 shapely
 nbformat
 ipython
+langchain
+langchain-google
+langchain-community
+langchain-google-genai
+langchain-openai
+pydantic
+python-dotenv
+langgraph
+wikipedia
