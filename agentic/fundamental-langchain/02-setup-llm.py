@@ -12,4 +12,4 @@ print(
     )
 )
 
-##  python ./agentic/fundamental-langchain/setup-llm.py
+##  python ./agentic/fundamental-langchain/02-setup-llm.py

@@ -1,18 +1,26 @@
+# Data manipulation and analysis
 pandas
 matplotlib
-jupyter
 seaborn
 plotly
 geopandas
 shapely
 nbformat
+
+# Jupyter
+jupyter
 ipython
+
+# Agentic - Core frameworks (Langchain)
 langchain
 langchain-google
 langchain-community
 langchain-google-genai
 langchain-openai
+langgraph
+
+# Agentic - supporting dependencies 
 pydantic
 python-dotenv
-langgraph
 wikipedia
+faiss-cpu

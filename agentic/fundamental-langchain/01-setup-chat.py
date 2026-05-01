@@ -14,4 +14,4 @@ messages = [
 ai_msg = chat.invoke(messages)
 print(ai_msg.content)
 
-##  python ./agentic/fundamental-langchain/setup-chat.py
+##  python ./agentic/fundamental-langchain/01-setup-chat.py
