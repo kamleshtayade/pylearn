@@ -43,7 +43,7 @@ prompt = ChatPromptTemplate.from_messages(
         of {topic} for {audience}.
         Respond in JSON format following these instructions:
         {format_instructions}
-        Do not include any commentary or markdown fences,
+        Do not include any commentary or markdown code fences (for example, do NOT include ```json or ```).
         Adhere to JSON schema and field description strictly.
         """),
     ]
@@ -72,9 +72,9 @@ print("response content:")
 print(response.content)
 
 # validate the response
-parsed_response = output_parser.parse(response.content)
+#parsed_response = output_parser.parse(response.content)
 
-print("Parsed response:")
-print(parsed_response)
+#print("Parsed response:")
+#print(parsed_response)
 
 ##  python ./agentic/fundamental-langchain/06-prompt-template-json-format-output.py --topic "Agentic AI" --audience "aspiring AI professionals"
