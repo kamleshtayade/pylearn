@@ -96,6 +96,56 @@ Summary:"""
     print("Summary generated.")
     return state
 
+
+# ----------------------------------------------------
+# Helper: print/inspect the agent graph (works on StateGraph or compiled workflow)
+# ----------------------------------------------------
+def print_agent_graph(graph_obj) -> None:
+    """Print a simple textual view (nodes + edges) and DOT if available."""
+    # if a compiled workflow wraps the original graph, try to unwrap it
+    g = getattr(graph_obj, "graph", graph_obj)
+
+    # try multiple access patterns for nodes/edges
+    def get_attr(a, names):
+        for n in names:
+            if hasattr(a, n):
+                attr = getattr(a, n)
+                return attr() if callable(attr) else attr
+        return None
+
+    nodes = get_attr(g, ["nodes", "get_nodes", "_nodes", "nodes_list"])
+    edges = get_attr(g, ["edges", "get_edges", "_edges", "edges_list"])
+
+    print("\n=== Agent Graph ===")
+    print("Nodes:")
+    if nodes:
+        for n in nodes:
+            print(f" - {n}")
+    else:
+        print(" (no nodes found)")
+
+    print("Edges:")
+    if edges:
+        for e in edges:
+            print(f" - {e}")
+    else:
+        print(" (no edges found)")
+
+    # try to print DOT representation if provided
+    dot_fn = None
+    for fn in ("to_dot", "to_graphviz", "export_dot", "to_dot_string"):
+        if hasattr(g, fn):
+            dot_fn = getattr(g, fn)
+            break
+
+    if dot_fn:
+        try:
+            dot = dot_fn() if callable(dot_fn) else dot_fn
+            print("\nDOT representation:")
+            print(dot)
+        except Exception:
+            pass
+
 # ----------------------------------------------------
 # 5. Build & compile LangGraph workflow
 # ----------------------------------------------------
@@ -117,6 +167,9 @@ def build_workflow():
 if __name__ == "__main__":
     workflow = build_workflow()
 
+    # print the agent graph structure before running
+    print_agent_graph(workflow)
+
     initial_state = {
         "query": "NVIDIA",
     }
@@ -132,5 +185,5 @@ if __name__ == "__main__":
     print(final_state.get("context"))
     print("\nAgent summary:")
     print(final_state.get("summary"))
-    
+
 ##  python ./aai/ch2/agent-search-summary.py
