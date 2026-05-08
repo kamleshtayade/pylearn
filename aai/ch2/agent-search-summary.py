@@ -41,7 +41,9 @@ class WorkflowState(TypedDict, total=False):
     context: Annotated[str, "raw text retrieved from wikipedia"]
     summary: Annotated[str, "LLM-generated summary"]
 
-
+# Shared Memory The checkpointer
+# The MemorySaver acts as the LangGraph checkpointer, which stores the agent state in memory.
+# In a real deployment, this could be replaced with a more robust solution (e.g., database, file system, redis, or DynamoDB).
 checkpointer = MemorySaver()
 
 # ----------------------------------------------------
