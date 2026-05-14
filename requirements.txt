@@ -17,6 +17,7 @@ langchain-google
 langchain-community
 langchain-google-genai
 langchain-openai
+langchain-text-splitters
 langgraph
 langgraph-checkpoint-sqlite
 
